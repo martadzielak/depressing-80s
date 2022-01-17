@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Background } from "./Background/Background";
+import { Overlay } from "./Overlay/Overlay";
+import { useEffect, useState } from "react";
 
-function App() {
+let audio = new Audio("/depressing80s.mp3");
+
+export const App = () => {
+  const [lightningCrazyMode, setLightningCrazyMode] = useState(false);
+  const [speedCrazyMode, setSpeedCrazyMode] = useState(false);
+  const [glitchCrazyMode, setGlitchCrazyMode] = useState(false);
+  const [colorsCrazyMode, setColorsCrazyMode] = useState(false);
+  const [everythingCrazyMode, setEverythingCrazyMode] = useState(false);
+  const [audioOn, setAudioOn] = useState(false);
+
+  useEffect(() => {
+    if (audioOn) audio.play();
+    if (!audioOn) audio.pause();
+  }, [audioOn]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Background
+        lightning={lightningCrazyMode}
+        speed={speedCrazyMode}
+        glitch={glitchCrazyMode}
+        colors={colorsCrazyMode}
+        everything={everythingCrazyMode}
+      />
+      <Overlay
+        handleAudio={() => setAudioOn(!audioOn)}
+        handleLightning={() => setLightningCrazyMode(true)}
+        handleSpeed={() => setSpeedCrazyMode(true)}
+        handleGlitch={() => setGlitchCrazyMode(true)}
+        handleColors={() => setColorsCrazyMode(true)}
+        handleEverything={() => {
+          setLightningCrazyMode(true);
+          setSpeedCrazyMode(true);
+          setGlitchCrazyMode(true);
+          setColorsCrazyMode(true);
+          setEverythingCrazyMode(true);
+        }}
+      />
+    </>
   );
-}
-
-export default App;
+};
