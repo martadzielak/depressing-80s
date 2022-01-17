@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/failure-simulator/static/css/main.3ef6fd52.css",
+    "main.js": "/failure-simulator/static/js/main.4fdbda9c.js",
+    "static/media/volume.png": "/failure-simulator/static/media/volume.2b677889d62207806002.png",
+    "index.html": "/failure-simulator/index.html",
+    "main.3ef6fd52.css.map": "/failure-simulator/static/css/main.3ef6fd52.css.map",
+    "main.4fdbda9c.js.map": "/failure-simulator/static/js/main.4fdbda9c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3ef6fd52.css",
+    "static/js/main.4fdbda9c.js"
+  ]
+}
