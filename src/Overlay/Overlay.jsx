@@ -1,4 +1,4 @@
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import { Content, OverlayContainer, Toggle } from "./styled";
 import volume from "./volume.png";
 
