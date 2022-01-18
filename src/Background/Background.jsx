@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, Suspense } from "react";
+import React, { useRef, useState, Suspense } from "react";
 import { Canvas, useFrame, extend } from "@react-three/fiber";
 import * as THREE from "three";
 import { useTexture, shaderMaterial } from "@react-three/drei";
@@ -10,6 +10,10 @@ import {
   Pixelation,
 } from "@react-three/postprocessing";
 import { GlitchMode } from "postprocessing";
+import roadImg from "./road.jpg";
+import grassImg from "./grass.jpg";
+import carMtl from "./car.mtl";
+import carObj from "./car.obj";
 
 const HaloMaterial = shaderMaterial(
   {},
@@ -36,7 +40,7 @@ const HaloMaterial = shaderMaterial(
 extend({ HaloMaterial });
 
 const Model = ({ speed, everything }) => {
-  const [roadTexture, grassTexture] = useTexture(["road.jpg", "grass.jpg"]);
+  const [roadTexture, grassTexture] = useTexture([roadImg, grassImg]);
   const { ref } = useRef();
   const [carPositionY, setCarPositionY] = useState(1000);
   const [roadTextureOffset, setRoadTextureOffset] = useState(0);
@@ -88,8 +92,8 @@ const Model = ({ speed, everything }) => {
         </mesh>
         <ObjWithMtl
           name="car"
-          mtlPath={"/car.mtl"}
-          objPath={"/car.obj"}
+          mtlPath={carMtl}
+          objPath={carObj}
           scale={3.5}
           position={[-5, carPositionY, carPositionZ]}
           rotation={[Math.PI / 2, 0, 0]}
