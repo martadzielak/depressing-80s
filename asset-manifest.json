@@ -1,14 +1,19 @@
 {
   "files": {
     "main.css": "/failure-simulator/static/css/main.3ef6fd52.css",
-    "main.js": "/failure-simulator/static/js/main.4fdbda9c.js",
+    "main.js": "/failure-simulator/static/js/main.1aebf695.js",
+    "static/media/depressing80s.mp3": "/failure-simulator/static/media/depressing80s.521c9d137c81b8fbb5d3.mp3",
+    "static/media/grass.jpg": "/failure-simulator/static/media/grass.e094019cff7d7695613d.jpg",
+    "static/media/road.jpg": "/failure-simulator/static/media/road.d3f350ee02db193dec85.jpg",
+    "static/media/car.obj": "/failure-simulator/static/media/car.92a38fdff2648f6b3b62.obj",
     "static/media/volume.png": "/failure-simulator/static/media/volume.2b677889d62207806002.png",
+    "static/media/car.mtl": "/failure-simulator/static/media/car.81d18a77bf86be5a775d.mtl",
     "index.html": "/failure-simulator/index.html",
     "main.3ef6fd52.css.map": "/failure-simulator/static/css/main.3ef6fd52.css.map",
-    "main.4fdbda9c.js.map": "/failure-simulator/static/js/main.4fdbda9c.js.map"
+    "main.1aebf695.js.map": "/failure-simulator/static/js/main.1aebf695.js.map"
   },
   "entrypoints": [
     "static/css/main.3ef6fd52.css",
-    "static/js/main.4fdbda9c.js"
+    "static/js/main.1aebf695.js"
   ]
 }
