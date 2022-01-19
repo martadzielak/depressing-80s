@@ -20,6 +20,7 @@ const Model = ({ speedMode, everythingMode }) => {
   const { ref } = useRef();
   const [carPositionY, setCarPositionY] = useState(1000);
   const [roadTextureOffset, setRoadTextureOffset] = useState(0);
+  const [sunSize, setSunSize] = useState(60);
   const carPositionZ = everythingMode ? 15 : 0;
   const speed = speedMode ? 0.02 : 2;
 
@@ -30,6 +31,12 @@ const Model = ({ speedMode, everythingMode }) => {
     } else setCarPositionY(carPositionY - speed);
 
     setRoadTextureOffset(roadTextureOffset + 1);
+
+    if (everythingMode) {
+      if (sunSize <= 830) {
+        setSunSize(sunSize + 1);
+      }
+    }
   });
 
   if (roadTexture) {
@@ -50,7 +57,7 @@ const Model = ({ speedMode, everythingMode }) => {
     <group ref={ref} position={[0, 0, 0]} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <mesh position={[-5, 800, 145]}>
-          <sphereBufferGeometry attach="geometry" args={[60, 32, 32]} />
+          <sphereBufferGeometry attach="geometry" args={[sunSize, 32, 32]} />
           <meshLambertMaterial
             attach="material"
             color="white"
