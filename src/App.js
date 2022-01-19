@@ -3,6 +3,7 @@ import { Background } from "./Background/Background";
 import { Overlay } from "./Overlay/Overlay";
 import { useEffect, useState } from "react";
 import depressing80s from "./depressing80s.mp3";
+import { AppContainer } from "./styled";
 
 let audio = new Audio(depressing80s);
 
@@ -20,13 +21,13 @@ export const App = () => {
   }, [audioOn]);
 
   return (
-    <>
+    <AppContainer>
       <Background
-        lightning={lightningCrazyMode}
-        speed={speedCrazyMode}
-        glitch={glitchCrazyMode}
-        colors={colorsCrazyMode}
-        everything={everythingCrazyMode}
+        lightningMode={lightningCrazyMode}
+        speedMode={speedCrazyMode}
+        glitchMode={glitchCrazyMode}
+        colorsMode={colorsCrazyMode}
+        everythingMode={everythingCrazyMode}
       />
       <Overlay
         handleAudio={() => setAudioOn(!audioOn)}
@@ -42,6 +43,6 @@ export const App = () => {
           setEverythingCrazyMode(true);
         }}
       />
-    </>
+    </AppContainer>
   );
 };

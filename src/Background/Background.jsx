@@ -1,9 +1,8 @@
 import React, { useRef, useState, Suspense } from "react";
-import { Canvas, useFrame, extend } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { useTexture, shaderMaterial } from "@react-three/drei";
+import { useTexture } from "@react-three/drei";
 import { ObjWithMtl } from "./Obj";
-import glsl from "babel-plugin-glsl/macro";
 import {
   EffectComposer,
   Glitch,
@@ -14,44 +13,21 @@ import roadImg from "./road.jpg";
 import grassImg from "./grass.jpg";
 import carMtl from "./car.mtl";
 import carObj from "./car.obj";
+import { useEffect } from "react/cjs/react.development";
 
-const HaloMaterial = shaderMaterial(
-  {},
-  // vertex shader
-  glsl`
-  varying vec3 vNormal;
-  void main() 
-  {
-      vNormal = normalize( normalMatrix * normal );
-      gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-  }
-  `,
-  // fragment shader
-  glsl`
-  varying vec3 vNormal;
-  void main() 
-  {
-      float intensity = pow( 0.3 - dot( vNormal, vec3( 0.0, 0.0, 1.0 ) ), 4.0 ); 
-      gl_FragColor = vec4( 0.3, 0.4, 0.5, 1.0 ) * intensity;
-  }
-  `
-);
-
-extend({ HaloMaterial });
-
-const Model = ({ speed, everything }) => {
+const Model = ({ speedMode, everythingMode }) => {
   const [roadTexture, grassTexture] = useTexture([roadImg, grassImg]);
   const { ref } = useRef();
   const [carPositionY, setCarPositionY] = useState(1000);
   const [roadTextureOffset, setRoadTextureOffset] = useState(0);
-  const carPositionZ = everything ? 15 : 0;
-  const animationSpeed = speed ? 0.02 : 2;
+  const carPositionZ = everythingMode ? 15 : 0;
+  const speed = speedMode ? 0.02 : 2;
 
   useFrame(() => {
     const minCarPosition = -150;
     if (carPositionY === minCarPosition) {
       setCarPositionY(1000);
-    } else setCarPositionY(carPositionY - animationSpeed);
+    } else setCarPositionY(carPositionY - speed);
 
     setRoadTextureOffset(roadTextureOffset + 1);
   });
@@ -82,14 +58,6 @@ const Model = ({ speed, everything }) => {
             emissiveIntensity={1000}
           />
         </mesh>
-        <mesh position={[5, 900, 190]}>
-          <sphereBufferGeometry attach="geometry" args={[120, 32, 32]} />
-          <haloMaterial
-            attach="material"
-            side={THREE.BackSide}
-            blending={THREE.AdditiveBlending}
-          />
-        </mesh>
         <ObjWithMtl
           name="car"
           mtlPath={carMtl}
@@ -112,26 +80,30 @@ const Model = ({ speed, everything }) => {
 };
 
 export const Background = ({
-  lightning,
-  speed,
-  glitch,
-  colors,
-  everything,
+  lightningMode,
+  speedMode,
+  glitchMode,
+  colorsMode,
+  everythingMode,
 }) => {
   return (
     <Canvas
-      style={colors ? { filter: "invert(1)" } : undefined}
+      style={colorsMode ? { filter: "invert(1)" } : undefined}
       camera={{ position: [3, 5.5, 20], fov: 80 }}
     >
-      {lightning ? <ambientLight /> : <pointLight position={[3, 5.5, 20]} />}
+      {lightningMode ? (
+        <ambientLight />
+      ) : (
+        <pointLight position={[3, 5.5, 20]} />
+      )}
       <fog attach="fog" args={["gray", 320, 3000]} />
-      <color attach="background" args={["#0B0B45"]} />
+      {/* <color attach="background" args={["#0B0B45"]} /> */}
       <Suspense fallback={null}>
-        <Model speed={speed} everything={everything} />
+        <Model speedMode={speedMode} everythingMode={everythingMode} />
       </Suspense>
       <EffectComposer>
         <Glitch
-          mode={glitch ? GlitchMode.CONSTANT_WILD : GlitchMode.SPORADIC}
+          mode={glitchMode ? GlitchMode.CONSTANT_WILD : GlitchMode.SPORADIC}
         />
         <Pixelation />
       </EffectComposer>
