@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/depressing-80s/static/css/main.0f1e1fe0.css",
-    "main.js": "/depressing-80s/static/js/main.8b5c9260.js",
+    "main.js": "/depressing-80s/static/js/main.42b1787b.js",
     "static/media/depressing80s.mp3": "/depressing-80s/static/media/depressing80s.521c9d137c81b8fbb5d3.mp3",
     "static/media/grass.jpg": "/depressing-80s/static/media/grass.e094019cff7d7695613d.jpg",
     "static/media/car.obj": "/depressing-80s/static/media/car.92a38fdff2648f6b3b62.obj",
@@ -10,10 +10,10 @@
     "static/media/car.mtl": "/depressing-80s/static/media/car.81d18a77bf86be5a775d.mtl",
     "index.html": "/depressing-80s/index.html",
     "main.0f1e1fe0.css.map": "/depressing-80s/static/css/main.0f1e1fe0.css.map",
-    "main.8b5c9260.js.map": "/depressing-80s/static/js/main.8b5c9260.js.map"
+    "main.42b1787b.js.map": "/depressing-80s/static/js/main.42b1787b.js.map"
   },
   "entrypoints": [
     "static/css/main.0f1e1fe0.css",
-    "static/js/main.8b5c9260.js"
+    "static/js/main.42b1787b.js"
   ]
 }
